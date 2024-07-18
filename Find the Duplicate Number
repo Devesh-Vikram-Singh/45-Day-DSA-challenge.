@@ -1,0 +1,71 @@
+Example 1:
+
+Input: nums = [1,3,4,2,2]
+Output: 2
+Example 2:
+
+Input: nums = [3,1,3,4,2]
+Output: 3
+Example 3:
+
+Input: nums = [3,3,3,3,3]
+Output: 3
+
+
+code
+
+     // method 1
+
+     /*   int findDuplicate(vector<int>& nums) {
+       int slow=nums[0];
+        int fast=nums[0];
+       do{
+             slow=nums[slow];
+             fast=nums[nums[fast]];
+       } while(slow!=fast);
+            fast=nums[0];
+            while(slow!=fast){
+                slow=nums[slow];
+                fast=nums[fast];
+            }
+        return slow; 
+        
+    } */
+
+//METHOD 2
+
+   int findDuplicate(vector<int>& nums) {
+              sort(nums.begin(),nums.end());
+
+              for(int i=0;i<nums.size()-1;i++){
+                  if(nums[i] == nums[i+1]){
+                      return nums[i];
+                  }
+              }
+              return -1;
+   }*/
+//method 3
+
+ /*int findDuplicate(vector<int>& nums) {
+     int ans=-1;
+     for(int i=0;i<nums.size();i++){
+           int index = abs(nums[i]);
+     
+     if(nums[index] < 0){
+         ans = index;
+         break;
+     }
+     //visited mark
+     nums[index] *=-1;
+     }
+     return ans;
+  }*/
+
+
+ //METHOD 4 POSITION METHOD
+int findDuplicate(vector<int>& nums) {
+        while(nums[0] != nums[nums[0]]){
+            swap(nums[0],nums[nums[0]]);
+        }
+        return nums[0];
+  }
