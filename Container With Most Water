@@ -1,0 +1,53 @@
+Example 1:
+Input: height = [1,8,6,2,5,4,8,3,7]
+Output: 49
+Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
+Example 2:
+
+Input: height = [1,1]
+Output: 1
+
+//method 1
+
+/* int maxArea(vector<int>& height) {
+        int s=0;
+        int e=height.size()-1;
+        int intitalarea;
+        int maxarea=0;
+        while(s<e){
+            intitalarea= min(height[s],height[e])*(e-s);
+            if(intitalarea > maxarea){
+                maxarea=intitalarea;
+            }
+            if(min(height[s],height[e]) == height[s])
+            s++;
+            else
+            e--;
+        }
+        return maxarea;
+    }
+};*/
+
+
+//method 2
+int maxArea(vector<int>& height) {
+    int s=0;
+    int e=height.size()-1;
+    int intial;
+    int maxarea=0;
+    while(s<e){
+        if(height[s]<=height[e]){
+            intial=height[s]*(e-s);
+            s++;
+        }
+        else{
+            intial=height[e]*(e-s);
+            e--;
+        }
+        if(intial>maxarea){
+           maxarea=intial;
+        }
+    }
+    return maxarea;
+}
+};
