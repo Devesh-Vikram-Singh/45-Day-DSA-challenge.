@@ -1,0 +1,63 @@
+Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
+ 
+
+Example 1:
+
+Input: haystack = "sadbutsad", needle = "sad"
+Output: 0
+Explanation: "sad" occurs at index 0 and 6.
+The first occurrence is at index 0, so we return 0.
+Example 2:
+
+Input: haystack = "leetcode", needle = "leeto"
+Output: -1
+Explanation: "leeto" did not occur in "leetcode", so we return -1.
+
+
+
+class Solution {
+public:
+   int strStr(string haystack, string needle) {
+        int n1=haystack.size();
+        int n2=needle.size();
+        //if size of needle string is more then we return the -1.
+        if(n2>n1){
+            return -1;
+        }
+        // here we intilize the three pointer i=haystack string j=needle string and start =haystack point first index
+        int i=0;
+        int j=0;
+        int start=0;
+        while(i<n1 && j<n2){
+            // if both string are equal
+            if(haystack[i]==needle[j]){
+                // then check the size of needle string is equal to haystack string 
+                if(i-start+1==n2){
+                return start;
+                }
+                // then increase the both pointer..
+                 i++;
+                 j++;
+            }
+           
+            else{
+                j=0;
+                // if fail then increse the index of start and i pointer
+                start++;
+                i=start;
+            }
+        }
+        return -1;
+        
+    }
+};
+
+
+
+
+
+
+
+
+
