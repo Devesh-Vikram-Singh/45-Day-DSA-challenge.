@@ -57,7 +57,44 @@ public:
 
 
 
+#include <iostream>
+using namespace std;
 
+int helper(string &s1,string &s2,int n,int m){
+    if(m>n)
+    return -1;
+    
+    int i=0;
+    int j=0;
+    int start=0;
+    
+    while(i< n && j<m){
+        if(s1[i]==s2[j]){
+            if(i-start+1 == m)
+            return start;
+            i++;
+            j++;
+        }
+        else{
+            j=0;
+            start++;
+            i=start;
+        }
+    }
+    return -1;
+}
+int main()
+{
+     string s1;
+     string s2;
+     cin>>s1;
+     cin>>s2;
+     int n=s1.length();
+     int m=s2.length();
+     
+     cout<< helper(s1,s2,n,m);
+     
+}
 
 
 
