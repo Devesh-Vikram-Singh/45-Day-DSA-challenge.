@@ -1,0 +1,84 @@
+Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+ 
+
+Example 1:
+
+Input: n = 3
+Output: ["((()))","(()())","(())()","()(())","()()()"]
+Example 2:
+
+Input: n = 1
+Output: ["()"]
+
+
+class Solution {
+public:
+    /*  vector<string> result;
+        bool isValid(string str){
+            int count=0;
+            for(char ch:str){
+                if(ch=='(')
+                count++;
+                else
+                count--;
+                if(count<0)
+                return false;
+            }
+            return count==0;
+        }
+       void solve(string &s,int n){
+        if(s.length() == 2*n){
+            if(isValid(s)){
+              result.push_back(s);
+            }
+         
+            return;
+        }
+
+        s.push_back('(');
+        solve(s,n);
+        s.pop_back();
+
+        s.push_back(')');
+        solve(s,n);
+        s.pop_back();
+        
+       }
+    vector<string> generateParenthesis(int n) {
+          string s;
+          solve(s,n);
+          return result;
+    }
+};*/
+
+//method=2
+
+vector<string> result;
+ void solve(string &s,int n,int open,int close){
+        if(s.length() == 2*n){
+              result.push_back(s);
+              return;
+            }
+      if(open<n){
+        s.push_back('(');
+        solve(s,n,open+1,close);
+        s.pop_back();
+      }
+      if(close< open){
+
+        s.push_back(')');
+        solve(s,n,open,close+1);
+        s.pop_back();
+      }
+        
+       }
+    vector<string> generateParenthesis(int n) {
+          string s;
+          int open=0;
+          int close=0;
+          solve(s,n,open,close);
+          
+          return result;
+    }
+};
