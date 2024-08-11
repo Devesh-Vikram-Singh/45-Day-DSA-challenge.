@@ -1,0 +1,51 @@
+Input:
+S = "geeks"
+Output:
+g e e k s
+g ee k s
+
+Explanation:
+All possible palindromic partitions
+are printed.
+Example 2:
+
+Input:
+S = "madam"
+Output:
+m a d a m
+m ada m
+madam
+
+
+
+vector<vector<string>> ans;
+    bool isPalindrome(string &S,int start,int end){
+        while(start<end){
+            if(S[start]==S[end]){
+                start++;
+                end--;
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+    }
+   void solve(int index,vector<string> &temp,string S){
+       if(index==S.size()){
+           ans.push_back(temp);
+           return;
+       }
+       for(int i=index;i<S.size();i++){
+           if(isPalindrome(S,index,i)){
+           temp.push_back(S.substr(index,i-index+1));
+           solve(i+1,temp,S);
+           temp.pop_back();
+           }
+       }
+   }
+    vector<vector<string>> allPalindromicPerms(string S) {
+       vector<string> temp;
+       solve(0,temp,S);
+       return ans;
+    }
